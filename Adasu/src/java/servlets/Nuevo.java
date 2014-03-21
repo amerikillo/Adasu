@@ -119,9 +119,12 @@ public class Nuevo extends HttpServlet {
 
                                 idLote = idLote(rsetm.getString("clave"), rsetm.getString("lote"), rsetm.getString("cadu"), rsetm.getString("cant"), CompraTotal, dame5car(rsetm.getString("origen")), rsetm.getString("fec_fab"));
                                 consql.conectar();
+                                sumaCompraInventario(rsetm.getString("clave"), rsetm.getString("cant"));
+                                consql.conectar();
                                 consql.insertar("insert into TB_Compra values ('C', '" + dame7car(Cla_Doc) + "', '" + Cla_Prv + "', 'A',  '  000', '" + df2.format(df.parse(rsetm.getString("date"))) + " 00:00:00', NULL, '" + rsetm.getString("clave") + "', '', NULL, '1', '" + rsetm.getString("cant") + "', '0', '" + PreCant + "', '0', '" + PreCant + "', '" + PreCant + "', '0', '" + Impuesto + "', '" + CompraTotal + "', '" + Precio + "', '" + idLote + "', 'D', '" + df2.format(df.parse(rsetm.getString("date"))) + " 00:00:00', '" + sesion.getAttribute("nombre") + "', '" + idObser + "', '" + idObser + "', '', '" + rsetm.getString("folio_remi") + "') ");
-                                insertaMovimiento(Cla_Doc, rsetm.getString("clave"), rsetm.getString("cant"), Precio, CompraTotal, idLote, rsetm.getString("observaciones"), Cla_Prv);
-
+                                consql.conectar();
+                                insertaMovimiento(Cla_Doc, rsetm.getString("clave"), rsetm.getString("cant"), Precio, CompraTotal, idLote, idObser, Cla_Prv);
+                                consql.conectar();
                                 insertaCompraBitacora(sesion.getAttribute("nombre").toString(), "COMPRA-MANUAL", "REGISTRAR", Cla_Doc, "1", "COMPRAS");
                                 consql.cierraConexion();
                             } catch (Exception e) {
@@ -207,9 +210,10 @@ public class Nuevo extends HttpServlet {
                 ResultSet rset = consql.consulta("select F_ClaPro, F_Existen, F_Precio from TB_Medica where F_ClaPro = '" + clave + "' ");
                 while (rset.next()) {
                     double costo = Double.parseDouble(rset.getString("F_Precio"));
-                    int n_cant = Integer.parseInt(cant) + Integer.parseInt(rset.getString("F_Existen"));
+                    String exsiten=rset.getString("F_Existen");
+                    int n_cant = Integer.parseInt(cant) + (int)Double.parseDouble(exsiten);
                     double cos_pro = ((costo * n_cant) + (costo * Integer.parseInt(cant))) / (n_cant);
-                    consql.actualizar("update TB_Medica set = F_Existen = '" + n_cant + "', F_CosPro = '" + cos_pro + "' where F_ClaPro = '" + clave + "' ");
+                    consql.actualizar("update TB_Medica set F_Existen = '" + n_cant + "', F_CosPro = '" + cos_pro + "' where F_ClaPro = '" + clave + "' ");
                 }
             } catch (Exception e) {
             }
@@ -222,7 +226,7 @@ public class Nuevo extends HttpServlet {
         try {
             consql.conectar();
             try {
-                consql.insertar("insert into TB_MovInv values (CURDATE(), '" + cladoc + "', '" + codprov + "', '1', '" + clapro + "', '" + cant + "', '" + costo + "', '" + costo + "', '" + cantcosto + "', '', '" + idLote + "', '" + dameidMov() + "', 'M', '" + observaciones + "') ");
+                consql.insertar("insert into TB_MovInv values (GETDATE(), '" + dame7car(cladoc) + "', '" + codprov + "', '1', '" + clapro + "', '" + cant + "', '" + costo + "', '" + costo + "', '" + cantcosto + "', '1', '" + idLote + "', '" + dameidMov() + "', 'M', '" + observaciones + "') ");
             } catch (Exception e) {
             }
             consql.cierraConexion();
