@@ -62,15 +62,12 @@
                                     <li><a href="comparaUbiSgw.jsp">Diferencias SGW Ubicaciones</a></li>
                                 </ul>
                             </li>
-                            <!--li class="dropdown">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">ADASU<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="captura.jsp">Captura de Insumos</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="catalogo.jsp">Catálogo de Proveedores</a></li>
-                                    <li><a href="reimpresion.jsp">Reimpresión de Docs</a></li>
+                                    <li><a href="descontarFolios.jsp">Descontar Folios</a></li>
                                 </ul>
-                            </li-->
+                            </li>
                             <%
                                 if (usua.equals("root")) {
                             %>

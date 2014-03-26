@@ -27,6 +27,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Estilos CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/datepicker3.css" rel="stylesheet">
         <link rel="stylesheet" href="css/cupertino/jquery-ui-1.10.3.custom.css" />
         <link href="css/navbar-fixed-top.css" rel="stylesheet">
         <!---->
@@ -88,10 +89,50 @@
                 </div>
             </div>
 
-            <div class="text-center">
-                <br /><br /><br />
-                <img src="imagenes/Logo GNK claro2.jpg" width="200" height="100" alt="Logo GNK claro2"/>
+            <div class="panel panel-default">
+                <div class="panel-heading">Descontar Folios</div>
+                <div class="panel-body">
+                    <form id="por_folio" class="form-horizontal" role="form" name="por_folio">
+                        Elija el folio o rango de folios a descontar.
+
+                        <div class="row">
+                            <label for="folio1" class="col-sm-1 control-label">De: </label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="folio1" id="folio1" />
+                            </div>
+                            <label for="folio2" class="col-sm-1 control-label">A: </label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="folio2" id="folio2" />
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-success btn-block">Por Folio</button>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-success btn-block">Global</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="por_fecha" class="form-horizontal" role="form" name="por_fecha">
+                        Elija el rango de fechas para los folios a descontar.
+
+                        <div class="row">
+                            <label for="fecha1" class="col-sm-1 control-label">De: </label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="fecha1" id="fecha1" />
+                            </div>
+                            <label for="fecha2" class="col-sm-1 control-label">A: </label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="fecha2" id="fecha2" />
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-success btn-block">Por Fechas</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
+
+
         </div>
         <br><br><br>
         <div class="navbar navbar-fixed-bottom navbar-inverse">
@@ -101,13 +142,21 @@
             </div>
         </div>
     </body>
+    <!-- 
+    ================================================== -->
+    <!-- Se coloca al final del documento para que cargue mas rapido -->
+    <!-- Se debe de seguir ese orden al momento de llamar los JS -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/ui.datepicker-es-MX.js"></script>
+    <script>
+        $(function() {
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+            $("#fecha1").datepicker();
+            $("#fecha2").datepicker();
+        });
+    </script>
 </html>
 
-
-<!-- 
-================================================== -->
-<!-- Se coloca al final del documento para que cargue mas rapido -->
-<!-- Se debe de seguir ese orden al momento de llamar los JS -->
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery-ui-1.10.3.custom.js"></script>

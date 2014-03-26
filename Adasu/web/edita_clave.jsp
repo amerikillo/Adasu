@@ -100,15 +100,12 @@
                                     <li><a href="comparaUbiSgw.jsp">Diferencias SGW Ubicaciones</a></li>
                                 </ul>
                             </li>
-                            <!--li class="dropdown">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">ADASU<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="captura.jsp">Captura de Insumos</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="catalogo.jsp">Catálogo de Proveedores</a></li>
-                                    <li><a href="reimpresion.jsp">Reimpresión de Docs</a></li>
+                                    <li><a href="descontarFolios.jsp">Descontar Folios</a></li>
                                 </ul>
-                            </li-->
+                            </li>
                             <%
                                 if (usua.equals("root")) {
                             %>
@@ -292,7 +289,7 @@
                                 </div>
                                 <label for="FecFab" class="col-sm-1 control-label">Fec Fab</label>
                                 <div class="col-sm-2">
-                                    <input data-date-format="dd/mm/yyyy" readonly="readonly" type="text" class="form-control" id="FecFab" name="FecFab" placeholder="FecFab" onKeyPress="LP_data();
+                                    <input data-date-format="dd/mm/yyyy" readonly type="text" class="form-control" id="FecFab" name="FecFab" placeholder="FecFab" onKeyPress="LP_data();
                                             anade(this);
                                             return tabular(event, this)" maxlength="10" value="<%=fec_fab%>" />
                                 </div>
@@ -302,7 +299,7 @@
                             <div class="form-group">
                                 <label for="Caducidad" class="col-sm-1 control-label">Cadu</label>
                                 <div class="col-sm-2">
-                                    <input type="text" readonly="readonly" class="form-control" id="Caducidad" name="Caducidad" placeholder="Caducidad" onKeyPress="return tabular(event, this)" value="<%=cadu%>" />
+                                    <input type="text" readonly class="form-control" id="Caducidad" name="Caducidad" placeholder="Caducidad" onKeyPress="return tabular(event, this)" value="<%=cadu%>" />
                                 </div>
                                 <label for="Cajas" class="col-sm-1 control-label">Cajas</label>
                                 <div class="col-sm-1">
